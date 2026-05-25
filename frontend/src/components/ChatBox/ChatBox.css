@@ -1,0 +1,438 @@
+/* frontend/src/components/ChatBox/ChatBox.css */
+
+/* =========================================
+   1. BỐ CỤC TỔNG THỂ (CONTAINER)
+========================================= */
+.chat-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.05);
+}
+
+/* =========================================
+   2. HEADER & MENU CHỌN THEME
+========================================= */
+.chat-header.glass-header {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.back-btn {
+    background: #f0f2f5;
+    border: none;
+    color: #050505;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 20px;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    background: #e4e6eb;
+}
+
+.header-info {
+    flex: 1;
+}
+
+.header-info h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.header-info span {
+    font-size: 0.85rem;
+    color: #65676b;
+}
+
+/* Theme Picker */
+.theme-selector { position: relative; }
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.theme-btn:hover { background: #f0f2f5; }
+
+.theme-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    width: 220px;
+    z-index: 100;
+    animation: dropDown 0.2s ease-out;
+}
+
+.theme-dropdown h4 {
+    margin: 0 0 15px 0;
+    font-size: 0.9rem;
+    color: #65676b;
+    text-align: center;
+}
+
+.theme-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.theme-item {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s;
+}
+
+.theme-item:hover { transform: scale(1.1); }
+.theme-item.active { border-color: #0072ff; transform: scale(1.1); box-shadow: 0 0 0 2px white inset; }
+
+@keyframes dropDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   3. KHU VỰC HIỂN THỊ TIN NHẮN CHÍNH
+========================================= */
+.chat-messages {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.5s ease; /* Chuyển màu Theme mượt mà */
+}
+
+/* Cấu trúc từng dòng tin nhắn */
+.message-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 25px; 
+}
+
+.row-me { align-items: flex-end; }
+.row-other { align-items: flex-start; }
+
+/* Tên người gửi */
+.msg-author-name {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 6px;
+    margin-left: 8px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Bóng chữ để nổi trên nền màu */
+}
+
+.row-other .msg-author-name {
+    color: #65676b;
+    text-shadow: none;
+}
+
+/* Khối bọc Bong bóng tin nhắn */
+.message-content-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
+
+.row-me .message-content-wrapper { align-items: flex-end; }
+
+/* Bong bóng chat */
+.message-bubble {
+    padding: 12px 18px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.my-message.theme-bubble {
+    background: #0084ff;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.other-message.theme-bubble {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    color: #050505;
+    border-bottom-left-radius: 4px;
+}
+
+.msg-text {
+    margin: 0 0 4px 0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.message-time {
+    font-size: 0.7rem;
+    display: block;
+    text-align: right;
+    opacity: 0.7;
+}
+
+/* =========================================
+   4. TÍNH NĂNG ĐÍNH KÈM (ẢNH & FILE)
+========================================= */
+.msg-attachment {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.attached-image {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+.attached-image:hover { transform: scale(1.02); }
+
+.attached-file {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.attached-file:hover {
+    background: rgba(0, 0, 0, 0.15);
+    text-decoration: underline;
+}
+
+.my-message .attached-file { background: rgba(255, 255, 255, 0.2); }
+.my-message .attached-file:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* =========================================
+   5. MENU ICON VÀ REACTION ĐÃ THẢ
+========================================= */
+.reaction-picker {
+    position: absolute;
+    top: -35px;
+    background: #fff;
+    border-radius: 30px;
+    padding: 6px 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 100;
+}
+
+.row-other .reaction-picker { left: 0; }
+.row-me .reaction-picker { right: 0; }
+
+.message-content-wrapper:hover .reaction-picker,
+.reaction-picker:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(5px);
+}
+
+.reaction-picker span {
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: transform 0.2s;
+}
+
+.reaction-picker span:hover { transform: scale(1.3) translateY(-2px); }
+
+.reaction-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: -10px;
+    position: relative;
+    z-index: 5;
+}
+
+.row-other .reaction-display { align-self: flex-start; margin-left: 10px; }
+.row-me .reaction-display { align-self: flex-end; margin-right: 10px; }
+
+.reaction-badge {
+    background: #fff;
+    border: 1px solid #e4e6eb;
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    color: #050505;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* =========================================
+   6. VẠCH NGĂN CÁCH TIN NHẮN MỚI
+========================================= */
+.unread-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #ff3347;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.unread-divider::before,
+.unread-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 51, 71, 0.4);
+}
+
+.unread-divider span {
+    padding: 0 15px;
+    background: rgba(255, 51, 71, 0.1);
+    border-radius: 20px;
+    margin: 0 10px;
+}
+
+/* =========================================
+   7. KHU VỰC NHẬP TIN NHẮN (MESSENGER STYLE)
+========================================= */
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    gap: 12px;
+}
+
+.attach-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #0084ff;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.attach-btn:hover { background: #f0f2f5; }
+
+.input-wrapper {
+    flex: 1;
+    background: #f0f2f5;
+    border-radius: 20px;
+    padding: 10px 15px;
+    display: flex;
+}
+
+.input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: #050505;
+}
+
+.send-btn {
+    background: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+    background: #0073e6;
+}
+
+/* =========================================
+   8. HIỆU ỨNG ZOOM ẢNH VÀO OVERLAY (MODAL)
+========================================= */
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: zoom-out;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    animation: popZoom 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+    color: #ff4b2b;
+}
+
+@keyframes popZoom {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}

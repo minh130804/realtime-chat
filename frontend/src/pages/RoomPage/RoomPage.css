@@ -1,0 +1,106 @@
+/* frontend/src/pages/RoomPage/RoomPage.css */
+.room-master-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.room-welcome {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.room-welcome h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.room-grid {
+    display: flex;
+    gap: 40px;
+    max-width: 900px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.room-card {
+    flex: 1;
+    min-width: 340px;
+    padding: 40px 30px;
+    border-radius: 24px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.room-card h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.room-card input {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.room-card input:focus {
+    border-color: #00c6ff;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 10px rgba(0, 198, 255, 0.2);
+}
+
+.btn-effect {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-effect:hover {
+    transform: translateY(-2px);
+}
+
+.green-gradient {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+.green-gradient:hover { box-shadow: 0 8px 20px rgba(56, 239, 125, 0.3); }
+
+.purple-gradient {
+    background: linear-gradient(135deg, #8a2387 0%, #e94057 100%);
+}
+.purple-gradient:hover { box-shadow: 0 8px 20px rgba(233, 64, 87, 0.3); }

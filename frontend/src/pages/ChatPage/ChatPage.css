@@ -1,0 +1,126 @@
+/* frontend/src/pages/ChatPage/ChatPage.css */
+.chat-page-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1a1a1a;
+    overflow: hidden;
+}
+
+.chat-sidebar {
+    width: 280px;
+    background: #252525;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.sidebar-header {
+    padding: 30px 20px;
+    border-bottom: 1px solid #333;
+}
+
+.app-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-content {
+    flex: 1;
+    padding: 30px 20px;
+}
+
+.info-item {
+    margin-bottom: 25px;
+}
+
+.info-item label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #ddd;
+}
+
+.info-item code {
+    background: #111;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #00c6ff;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #333;
+}
+
+.leave-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff4b2b;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.leave-btn:hover {
+    background: #ff416c;
+    box-shadow: 0 0 10px rgba(255, 75, 43, 0.3);
+}
+
+/* frontend/src/pages/ChatPage/ChatPage.css */
+
+.chat-main-area {
+    flex: 1;
+    display: flex;
+    /* Đổi padding thành 0 để khung chat tràn full viền */
+    padding: 0; 
+    background: #e9ecef;
+}
+
+/* CSS cho danh sách người online */
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.user-list li {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.user-list li.is-me {
+    background: rgba(0, 198, 255, 0.15);
+    border: 1px solid rgba(0, 198, 255, 0.3);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #38ef7d;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(56, 239, 125, 0.6);
+}
